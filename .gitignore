@@ -1,0 +1,17 @@
+# Ejecutables C
+server/server
+*.out
+*.exe
+
+# Archivos compilados Java
+*.class
+
+# Archivos compilados Python
+*.pyc
+__pycache__/
+
+# Logs del servidor
+*.log
+*.txt
+server/*.txt
+vehicle_logs.txt

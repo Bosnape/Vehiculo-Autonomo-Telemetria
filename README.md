@@ -1,4 +1,4 @@
-# Vehicle Autonomous Telemetry System
+# Sistema de Telemetría de Vehículo Autónomo
 
 Sistema de telemetría para vehículo autónomo desarrollado en C (servidor) con clientes en Python y Java.
 

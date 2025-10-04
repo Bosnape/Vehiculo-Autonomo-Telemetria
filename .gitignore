@@ -12,6 +12,5 @@ __pycache__/
 
 # Logs del servidor
 *.log
-*.txt
 server/*.txt
-vehicle_logs.txt
+server/vehicle_logs.txt

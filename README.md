@@ -2,24 +2,31 @@
 
 Sistema de telemetría para vehículo autónomo desarrollado en C (servidor) con clientes en Python y Java.
 
-## Requisitos
+## Requisitos y Configuración de Terminales
 
 ### Servidor (C)
 - GCC con soporte para C99
 - POSIX threads (pthread)
 - Make
+- **Terminal requerido: WSL (Windows Subsystem for Linux)**
 
 ### Cliente Python
 - Python 3.6+
 - tkinter (generalmente incluido)
+- **Terminal requerido: PowerShell o CMD**
 
 ### Cliente Java
 - Java JDK 8+
 - Swing (incluido en JDK)
+- **Terminal requerido: PowerShell o CMD**
 
-## Compilación e Instalación
+### ¿Por qué diferentes terminales?
+- **Servidor:** Compilado como ejecutable Linux (ELF) → Necesita WSL
+- **Clientes:** Aplicaciones Windows nativas → Usan PowerShell/CMD
 
-### 1. Compilar Servidor
+## Compilación
+
+### 1. Compilar Servidor (usar WSL)
 ```bash
 cd server
 make
@@ -31,14 +38,12 @@ cd client-java
 javac *.java
 ```
 
-### 3. Verificar Cliente Python (Opcional)
+### 3. Verificar Cliente Python (usar PowerShell/CMD)
 ```bash
 cd client-python
 python -m compileall .
 ```
 > **Nota:** Python no requiere compilación. Este comando solo verifica la sintaxis.
-
-> **Importante:** El servidor requiere WSL porque genera ejecutables Linux. Los clientes usan PowerShell/CMD.
 
 ## Ejecución
 
@@ -150,7 +155,7 @@ Para información detallada sobre el protocolo de comunicación:
 ### Verificación de Restricciones
 1. Observer intenta enviar comando → Error de permisos
 2. SPEED UP con batería baja → Comando denegado
-3. SPEED UP a 100 km/h → Velocidad máxima alcanzada
+3. SPEED UP superando 100 km/h → Velocidad máxima alcanzada
 
 ## Solución de Problemas
 
@@ -172,39 +177,3 @@ Para información detallada sobre el protocolo de comunicación:
 ### Autenticación falla
 - Verificar username/password exactos (case-sensitive)
 - Usar credenciales de prueba listadas arriba
-
-## Guía de Terminales en Windows
-
-### Para el Servidor (C)
-```bash
-# Usar WSL (Windows Subsystem for Linux)
-cd server
-make              # Compilar
-./server 8080 logs.txt  # Ejecutar
-```
-
-### Para Clientes (Python/Java)
-```bash
-# Usar PowerShell o CMD
-
-# Cliente Java
-cd client-java
-javac *.java      # Compilar PRIMERO
-java LoginGUI
-
-# Cliente Python  
-cd client-python
-python client.py  # Ejecutar directamente
-```
-
-### ¿Por qué diferentes terminales?
-- **Servidor:** Compilado como ejecutable Linux (ELF) → Necesita WSL
-- **Clientes:** Aplicaciones Windows nativas → Usan PowerShell/CMD
-
-## Notas de Desarrollo
-
-- Protocolo implementado según especificación RFC completa
-- Manejo robusto de desconexiones y errores
-- Interfaz gráfica responsive en ambos clientes
-- Simulación realista de vehículo con consumo de batería
-- Logging completo para debugging y auditoría
